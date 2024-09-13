@@ -170,7 +170,7 @@ const page = () => {
             type="submit"
             className="block w-full rounded-md bg-foreground px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
           >
-            Let's talk
+            Let&apos;s talk
           </button>
         </div>
       </form>
