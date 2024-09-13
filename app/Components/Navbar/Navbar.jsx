@@ -17,7 +17,9 @@ const Navbar = ({links}) => {
           <Image
             alt=""
             src={logo}
-            className="h-14 w-auto"
+            className=" w-auto"
+            width={100}
+              hight={100}
           />
         </a>
       </div>
@@ -53,7 +55,9 @@ const Navbar = ({links}) => {
             <Image
             alt=""
             src={logo}
-            className="h-14 w-auto"
+            className=" w-auto"
+            width={100}
+              hight={100}
           />
           </a>
           <button

@@ -50,7 +50,9 @@ export const Footer = ({ links }) => {
             <Image
               alt=""
               src={logo}
-              className="h-20 w-auto"
+              className=" w-auto"
+              width={120}
+              hight={120}
             />
             <p class="text-sm mt-4">
               We are committed to delivering the best solutions to our customers. Our team is dedicated to innovation and excellence in everything we do.
