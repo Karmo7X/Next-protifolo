@@ -7,6 +7,8 @@ import { FaProjectDiagram } from "react-icons/fa";
 import { PiExclamationMarkFill } from "react-icons/pi";
 import { RiTeamFill } from "react-icons/ri";
 import { GrContact } from "react-icons/gr";
+import Navbar from "./Components/Navbar/Navbar";
+import { Footer } from "./Components/Footer/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,7 +32,7 @@ export const metadata = {
 
 const links = [
   {
-    title: "HOME",
+    title: "home",
     icon: (
       <>
       <IoMdHome className="h-full w-full text-foreground dark:text-neutral-300" />
@@ -41,7 +43,7 @@ const links = [
   },
 
   {
-    title: "PROJECTS",
+    title: "projects",
     icon: (
       <>
        <FaProjectDiagram className="h-full w-full text-foreground dark:text-neutral-300" />
@@ -60,7 +62,7 @@ const links = [
   // },
 
   {
-    title: "ABOUT",
+    title: "about",
     icon: (
       <>
         <PiExclamationMarkFill className="h-full w-full text-foreground dark:text-neutral-300" />
@@ -69,7 +71,7 @@ const links = [
     href: "/About",
   },
   {
-    title: "Contact US",
+    title: "contact us",
     icon: (
       <>
         <GrContact className="h-full w-full text-foreground dark:text-neutral-300" />
@@ -88,7 +90,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       > 
       {/* <FloatingDock items={links} mobileClassName="flex"/> */}
+      <Navbar links={links}/>
         {children}
+        <Footer links={links}/>
       </body>
     </html>
   );

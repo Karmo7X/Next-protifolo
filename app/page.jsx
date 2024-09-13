@@ -1,11 +1,16 @@
 "use client"
-import { motion } from "framer-motion";
+import { motion ,useScroll,useAnimation, useInView } from "framer-motion";
 import { ImagesSlider } from "./Components/UI/images-slider";
 import { FlipWords } from "./Components/UI/flip-words";
 import { Card, Carousel } from "./Components/UI/apple-cards-carousel";
 import { TextGenerateEffect } from "./Components/UI/text-generate-effect";
-
+import { useEffect } from "react";
+import { useRef } from 'react';
 export default function Home() {
+
+  const control = useAnimation()
+  const ref = useRef(null); // Create a ref for the element
+  const isInView = useInView(ref); // Pass the ref to useInView
   // image for slider
   const images = [
     "https://images.unsplash.com/photo-1485433592409-9018e83a1f0d?q=80&w=1814&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -74,6 +79,21 @@ export default function Home() {
     { name: 'Paid time off', value: 'Unlimited' },
   ]
   const textwords = `Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.`;
+  
+  // for animation 
+  const boxVariant = {
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } },
+    hidden: { opacity: 0, scale: 0 }
+  };
+  
+  useEffect(() => {
+    if (isInView) {
+      control.start("visible");
+    } else {
+      control.start("hidden");
+    }
+  }, [control, isInView]);
+
   return (
     <div className="min-h-screen  font-[family-name:var(--font-geist-sans)]">
       <main className="flex w-full flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -95,14 +115,22 @@ export default function Home() {
         <motion.p className="font-bold text-xl md:text-6xl text-center bg-clip-text text-foreground bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
           Ceate Your  <FlipWords words={words} className={'text-white'} /> Website <br /> With Ace Soft
         </motion.p>
-        <button className="px-4 py-2 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
+        {/* <button className="px-4 py-2 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
           <span>Join now →</span>
           <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" />
-        </button>
+        </button> */}
       </motion.div>
     </ImagesSlider>
       </main>
        <section className="projects flex items-center justify-center mt-10 mb-10">
+      <motion.div
+        ref={ref}
+        variants={boxVariant}
+        initial="hidden"
+        animate={control}
+      
+      >
+
         <div className="container px-3 sm:px-6 lg:px-8">
           <div className="relative flex flex-col   lg:flex-row xl:flex-row 2xl:flex-row lg:mt-20 xl:mt-20 2xl:mt-20  lg:mb-20 xl:mb-20 2xl:mb-20 px-3 lg:px-10 w-full ">
             
@@ -130,7 +158,38 @@ export default function Home() {
           </div>
         
         </div>
+      </motion.div>
+        
        </section>
+       {/* <section className="services flex items-center justify-center mt-10 mb-10">
+        <div className="container px-3 sm:px-6 lg:px-8">
+          <div className="relative flex flex-col   lg:flex-row xl:flex-row 2xl:flex-row lg:mt-20 xl:mt-20 2xl:mt-20  lg:mb-20 xl:mb-20 2xl:mb-20 px-3 lg:px-10 w-full ">
+            
+          <div>
+              <h3 className="text-lg w-full  lg:w-60 xl:w-60  2xl:w-60 uppercase text-center font-bold  md:text-lg mt-10 mb-10 lg:-rotate-90 xl:-rotate-90 2xl:-rotate-90  lg:text-3xl xl:text-3xl 2xl:text-3xl">
+          Services
+          </h3>
+          </div>
+          <div className="grid grid-cols-1  w-full   lg:px-5 xl:px-5 2xl:px-5">
+          <Carousel items={cards} />
+          
+          <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+      >
+        <div
+          style={{
+            clipPath:
+              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+          }}
+          className="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+        />
+      </div>
+          </div>
+          </div>
+        
+        </div>
+       </section> */}
        <section className="work_us">
        <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
       <img
