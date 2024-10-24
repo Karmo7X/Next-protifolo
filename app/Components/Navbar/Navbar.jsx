@@ -40,11 +40,11 @@ const Navbar = ({links}) => {
           </a>
         ))}
       </div>
-      <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        {/* <a href="#" className="text-sm font-semibold leading-6 text-text-foreground">
+      {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <a href="#" className="text-sm font-semibold leading-6 text-text-foreground">
           Log in <span aria-hidden="true">&rarr;</span>
-        </a> */}
-      </div>
+        </a>
+      </div> */}
     </nav>
     <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
       <div className="fixed inset-0 z-50" />
